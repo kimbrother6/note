@@ -1,0 +1,41 @@
+{% extends './base.html'%}
+{% load static %}
+
+
+{% block content %}
+<meta charset="utf-8">
+<title>오답노트 목록</title>
+<link rel="stylesheet" href="{% static 'math_note/styles.css'%}">
+
+
+<ul>
+어제 쓴 오답노트
+  {% for post in yesterdayPost %}
+    <a href="{{post.id}}">
+        <div class='post'>
+            <p>{{ post.book }}</p>
+            <h3>{{post.WR}}</h3>
+        </div>
+    </a>
+  {% endfor %}<br>
+  오늘 쓴 오답노트
+  {% for post in todayPost %}
+    <a href="{{post.id}}">
+        <div class='post'>
+            <p>{{ post.book }}</p>
+            <h3>{{post.WR}}</h3>
+        </div>
+    </a>
+  {% endfor %}
+  모든 포스트
+    {% for post in model %}
+    <a href="{{post.id}}">
+        <div class='post'>
+            <p>{{ post.book }}</p>
+            <h3>{{post.WR}}</h3>
+        </div>
+    </a>
+  {% endfor %}
+  <a href='new/'>오답노트 쓰러가기</a>
+</ul>
+{% endblock content %}

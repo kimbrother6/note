@@ -1,0 +1,39 @@
+.sentenc-list {
+    overflow: scroll;
+    width: 250px;
+    height: 350px;
+    padding: 0px;
+}
+
+.sentenc {
+    margin-bottom: 5px;
+    background-color: lightblue;
+}
+
+.classification-list {
+    background-color: lightgray;
+    width: 250px;
+    margin: 10px;
+    float: left;
+}
+
+.list {
+    background-color: mediumpurple;
+}
+
+.card-word {
+    width: 100%;
+    height: 100%;
+    background-color: blue;
+    border-radius: 80px;
+    text-align: center;
+}
+
+.card-word-text {
+    text-decoration: none;
+    color: black;
+}
+
+.text {
+    color: black;
+}

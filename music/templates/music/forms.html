@@ -1,0 +1,5 @@
+<form method="post" enctype="multipart/form-data">{% csrf_token %}
+    {{form.as_ul}}
+    <input type='submit' value='전송'>
+</form> 
+<a href={% url 'home-page' %}> 노래추가 취소 </a>

@@ -2,32 +2,50 @@ from music.models import Song
 from django.shortcuts import render, redirect
 from .forms import SongForm
 from .models import Song
+from sqlalchemy import create_engine
 import youtube_dl
+import pandas as pd
 
+engine = create_engine("sqlite:////Users/cubest_june/hj-django/note/db.sqlite3")
 
 # Create your views here.
-def music_home_page(request):
-    # ydl_opt = {
-    #     'outtmpl': 'song/%(title)s.%(ext)s'
-    # }
-    # with youtube_dl.YoutubeDL(ydl_opt) as ydl:
-    #     ydl.download(['https://www.youtube.com/watch?v=DbXMjAYSa68'])
-    return render(request, 'music/home.html')
+def music_home_page(request): #메인 페이지를 호출해주는 함수
+    song = Song.objects.all()
 
-def new_song(request):
+    with engine.connect() as conn, conn.begin():
+            data = pd.read_sql_table("music_song", conn)
+    class_list = data['Class'].unique()
+
+    return render(request, 'music/home.html', {'song': song, 'class_list': class_list})
+
+def new_song(request): #form
     if request.method == 'POST':
-        newPost = Song(
-            song_title = request.POST['song_title'],
-            song = request.FILES['song'],
-            Class = request.POST['Class'],
+        song_title = request.POST['song_title']
+        song_url = request.POST['song_url']
+        Class = request.POST['Class']
+        song = 'media/song/{}.mp4'.format(song_title)
+        ydl_opt = {
+            'outtmpl': 'media/song/{}.%(ext)s'.format(song_title)
+        }
+
+        with youtube_dl.YoutubeDL(ydl_opt) as ydl:
+            ydl.download(['{}'.format(song_url)])
+
+        new_snog = Song(
+            song_title = song_title,
+            song_url = song_url,
+            Class = Class,
+            song = song
         )
-        newPost.save()
-        return redirect('home-page')
+        new_snog.save()
+        print(song)
+
+        return redirect('music-player', id=new_snog.id)
     else:
         form = SongForm
         return render(request, 'music/forms.html', {'form': form})
 
-def music_player(request):
-    model = Song.objects.get(id=1)
-
+def music_player(request, id): #음악을 플래이시켜주는 페이지를 호출해주는 함수
+    model = Song.objects.get(id=id)
+    print(model)
     return render(request, 'music/music_player.html', {'model': model})

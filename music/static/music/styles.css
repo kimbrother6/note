@@ -1,0 +1,22 @@
+.song-list {
+    overflow: scroll;
+    width: 250px;
+    height: 350px;
+    padding: 0px;
+}
+
+.song {
+    margin-bottom: 5px;
+    background-color: lightblue;
+}
+
+.classification-list {
+    background-color: lightgray;
+    width: 250px;
+    margin: 10px;
+    float: left;
+}
+
+.list {
+    background-color: mediumpurple;
+}

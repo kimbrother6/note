@@ -1,9 +1,9 @@
-{% extends './base.html'%}
+{% comment %} {% extends './base.html'%} {% endcomment %}
 
-{% block content %}
+{% comment %} {% block content %} {% endcomment %}
     <form method="post" enctype="multipart/form-data">{% csrf_token %}
         {{form.as_ul}}
         <input type='submit' value='전송'>
     </form> 
-    <a href={% url 'home-page' %}> 노래추가 취소 </a>
-{% endblock content %}
+    <a href={% url 'music:home-page' %}> 노래추가 취소 </a>
+{% comment %} {% endblock content %} {% endcomment %}

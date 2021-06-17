@@ -1,9 +1,6 @@
 {% extends './base.html'%}
 {% load static %}
 
-
-<!DOCTYPE html>
-
 {% block content %}
 <html>
     <head>
@@ -14,12 +11,28 @@
     </head>
     <body>
 
+        <div>
+            <a href="{% url 'home:home-page' %}" class='a'>
+                <div class='note'>
+                    <div class="helper"></div>
+                    수학
+                </div>
+            </a>
 
-        <div>
-            <a href="math_note/" class='a'><div class='note'>수학 노트</div></a>
-            <a href="english_note/" class='a'><div class='note'>영어 노트</div></a>
-            <a href="music/" class='a'><div class='note'>노래</div></a>
-        <div>
+            <a href="{% url 'english:home-page' %}" class='a'>
+                <div class='note'>
+                    <div class="helper"></div>
+                    영어
+                </div>
+            </a>
+
+            <a href="{% url 'music:home-page' %}"  class='a'>
+                <div class='note'>
+                    <div class="helper"></div>
+                    노래
+                </div>
+            </a>
+        </div>
 
     </body>
 </html>

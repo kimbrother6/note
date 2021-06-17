@@ -1,14 +1,27 @@
 .note {
     background-color: coral;
-    width: 100px;
+    width: 130px;
     height: 150px;
     text-align: center;
     margin: 0px;
     float: left;
     margin-left: 30px;
+    font-size: 40px;
 }
 
 .a {
     text-decoration: none;
     width: 100px;
+}
+
+.helper {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
+
+.word {
+    display: inline-block;
+    vertical-align: middle;
 }

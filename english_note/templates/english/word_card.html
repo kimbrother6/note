@@ -1,0 +1,32 @@
+{% extends './base.html' %}
+{% load static %}
+
+{% block content %}
+<head>
+    <link rel="stylesheet" href="{% static 'english_note/styles.css' %}">
+</head>
+
+
+    {% for sentence in sentences %}
+        <a href='#' class='card-word-text'>
+            
+            <a href="#{{ sentence.EN_word }}">
+                <div class='card-word' id="{{ sentence.KO_word }}">
+                    <div class="helper"></div>
+                    <h1 class='card-word-text'>{{ sentence.KO_word }}</h1>
+                </div>
+            </a>
+        </a><br/>
+    {% endfor %}
+
+    {% for sentence in sentences %}
+        <a href='#' class='card-word-text'>
+            <a href="#{{ sentence.KO_word }}">
+                <div class='card-word' id="{{ sentence.EN_word }}">
+                    <div class="helper"></div>
+                    <h1 class='card-word-text'>{{ sentence.EN_word }}</h1>
+                </div>
+            </a>
+        </a><br/>
+    {% endfor %}
+{% endblock content %}

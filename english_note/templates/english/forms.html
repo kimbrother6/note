@@ -1,0 +1,11 @@
+{% extends './base.html'%}
+{% load static%}
+
+{% block content %}
+<form method="post">{% csrf_token %}
+    {{form.as_ul}}
+    <input type='submit' value='전송'>
+</form>
+
+<a href="{% url 'english:home-page' %}">글쓰기 취소</a>
+{% endblock content %}

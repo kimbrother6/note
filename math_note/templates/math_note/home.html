@@ -14,7 +14,7 @@
     <a href="{{post.id}}">
         <div class='post'>
             <p>{{ post.book }}</p>
-            <h3>{{post.WR}}</h3>
+            <img src="{{post.image.url}}">
         </div>
     </a>
   {% endfor %}<br>
@@ -23,16 +23,16 @@
     <a href="{{post.id}}">
         <div class='post'>
             <p>{{ post.book }}</p>
-            <h3>{{post.WR}}</h3>
+            <img src="{{post.image.url}}">
         </div>
     </a>
-  {% endfor %}
+  {% endfor %}<br>
   모든 포스트
     {% for post in model %}
-    <a href="{{post.id}}">
+    <a href="{% url 'math:detail-page' post.id%}">
         <div class='post'>
             <p>{{ post.book }}</p>
-            <h3>{{post.WR}}</h3>
+            <img src="{{post.image.url}}">
         </div>
     </a>
   {% endfor %}

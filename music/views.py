@@ -23,9 +23,10 @@ def new_song(request): #form
         song_title = request.POST['song_title']
         song_url = request.POST['song_url']
         Class = request.POST['Class']
-        song = 'media/song/{}.mp4'.format(song_title)
+        song = 'media/song/{}.mp3'.format(song_title)
         ydl_opt = {
-            'outtmpl': 'media/song/{}.%(ext)s'.format(song_title)
+            'format': 'bestaudio/best',
+            'outtmpl': 'media/song/{}.mp3'.format(song_title)
         }
 
         with youtube_dl.YoutubeDL(ydl_opt) as ydl:
@@ -40,7 +41,7 @@ def new_song(request): #form
         new_snog.save()
         print(song)
 
-        return redirect('music-player', id=new_snog.id)
+        return redirect('music:music-player', id=new_snog.id)
     else:
         form = SongForm
         return render(request, 'music/forms.html', {'form': form})

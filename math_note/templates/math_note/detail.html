@@ -1,6 +1,6 @@
-{% extends './base.html'%}
+{% comment %} {% extends './base.html'%} {% endcomment %}
 
-{% block content %}
+{% comment %} {% block content %} {% endcomment %}
 <h1>{{post.book}} p{{post.page}}   #{{post.number}}</h1>
 <h4>
     대단원: {{post.big_unit}}  <br>
@@ -11,5 +11,5 @@
 {{post.dt_created}}<br>
 {{post.dt_modified}}<br>
 
-<a href={% url 'list-page' %}>목록으로 돌아가기</a>
-{% endblock content %}
+<a href={% url 'math:home-page' %}>목록으로 돌아가기</a>
+{% comment %} {% endblock content %} {% endcomment %}

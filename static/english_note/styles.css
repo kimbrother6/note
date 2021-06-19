@@ -57,6 +57,15 @@ a {
     height: 80%;
 }
 
+.bs-button {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.carousel-control-prev, .carousel-control-next{
+    height: 100%
+}
+
 /* 웹에서 받아온 카드 뒤집는 css*/
 /* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
 .flip-card {
@@ -79,6 +88,7 @@ a {
     text-align: center;
     transition: transform 0.8s;
     transform-style: preserve-3d;
+    font-size: 70px;
 }
 
   /* Do an horizontal flip when you move the mouse over the flip box container */

@@ -17,13 +17,11 @@ def english_note_home_page(request):
 
     return render(request, 'english/home.html', {'word': word, 'class_list': class_list})
 
-
-
-
-
-def sentenceCard(request, listName):
-    sentence = Sentence.objects.filter(Class=listName)
-    return render(request, 'english/word_card.html', {'sentences':sentence})
+def word_card(request, listName):
+    words = Sentence.objects.filter(Class=listName)
+    words_len_0 = list_len(words, 0) #start 0
+    words_len_1 = list_len(words, 1) #start 1
+    return render(request, 'english/word_card.html', {'words':words, 'words_len_0': words_len_0, 'words_len_1': words_len_1, 'aaa': ['1', '2']})
 
 def new_page(request):
     if request.method == 'POST':
@@ -34,3 +32,13 @@ def new_page(request):
     else:
         form = englishNoteForm
         return render(request, 'english/forms.html', {'form': form})
+
+def list_len(list, num):
+    new_list = []
+    if num == 0:
+        for i in range(len(list)):
+            new_list.append(str(i)) 
+    else :
+        for i in range(1, len(list) + 1):
+            new_list.append(str(i)) 
+    return new_list

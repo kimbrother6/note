@@ -7,93 +7,39 @@
 </head>
 
 <body>
-    <div id="carouselExampleCaptions" class="carousel slide">
+    <div id="carouselExampleCaptions" class="carousel slide" data-interval="false">
+    
     <div class="carousel-indicators">
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"></button>
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"></button>
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"></button>
-
+        {% for num in words_len_0 %}
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{num}}" {% if num == '0' %}class="active"{% endif %}></button>
+        {% endfor %}
     </div>
+
     <div class="carousel-inner">
-        <div class="carousel-item active">
-            <div class='card-word'>
-                
-                <div class="flip-card">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front"><div class='helper'></div>1. front of card</div>
-                        <div class="flip-card-back"><div class='helper'></div>1. back of card</div>
+        {% for word in words %}
+            <div class="carousel-item {% if word == words.0 %}active{% endif %}">
+                <div class='card-word'>
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"><div class='helper'></div>{{word.KO_word}}</div>
+                            <div class="flip-card-back"><div class='helper'></div>{{word.EN_word}}</div>
+                        </div>
                     </div>
                 </div>
-
-            </div>
         </div>
+        {% endfor %}
 
 
-        <div class="carousel-item">
-            <div class='card-word'>
-                
-                <div class="flip-card">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front"><div class='helper'></div>2. front of card</div>
-                        <div class="flip-card-back"><div class='helper'></div>2. back of card</div>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-
-        <div class="carousel-item">
-            <div class='card-word'>
-                
-                <div class="flip-card">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front"><div class='helper'></div>3. front of card</div>
-                        <div class="flip-card-back"><div class='helper'></div>3. back of card</div>
-                    </div>
-                </div>
-                
-            </div>
-        </div> 
-    </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+    <button class=" carousel-control-prev bs-button" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>
     </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+    <button class="carousel-control-next bs-button" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Next</span>
     </button>
     </div>
+    </div>
+    </div>
 </body>
-
-
-
-
-
-
-    {% comment %} {% for sentence in sentences %}
-        <a href='#' class='card-word-text'>
-            
-            <a href="#{{ sentence.EN_word }}">
-                <div class='card-word' id="{{ sentence.KO_word }}">
-                    <div class="helper"></div>
-                    <h1 class='card-word-text'>{{ sentence.KO_word }}</h1>
-                </div>
-            </a>
-        </a><br/>
-    {% endfor %}
-
-    {% for sentence in sentences %}
-        <a href='#' class='card-word-text'>
-            <a href="#{{ sentence.KO_word }}">
-                <div class='card-word' id="{{ sentence.EN_word }}">
-                    <div class="helper"></div>
-                    <h1 class='card-word-text'>{{ sentence.EN_word }}</h1>
-                </div>
-            </a>
-        </a><br/>
-    {% endfor %} {% endcomment %}
-
-
 {% endblock content %}

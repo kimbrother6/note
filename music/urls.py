@@ -7,4 +7,6 @@ urlpatterns = [
     path('', views.music_home_page, name='home-page'),
     path('new/', views.new_song, name='new'),
     path('music_player/<int:id>/', views.music_player, name='music-player'),
+    path('view_artist/', views.view_artist, name='view-artist'),
+    
 ]

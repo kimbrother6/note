@@ -10,15 +10,15 @@
         <div class='list-box'>
 
             {% for Class in class_list%}
-            <div class='classification-list'>
+            <div class='class-list'>
 
                 <a href='#'> <h3 class='list-title'>{{Class}}</h3></a>
-                <div class='song-list'>
+                <div class='elem-list'>
                     {% for song in song %}
                         {% if song.Class == Class%}
 
-                            <div class='song'>
-                                <a href="music_player/{{song.id}}">{{song.song_title}}</a>
+                            <div class='elem'>
+                                <a href="{% url 'music:music-player' song.id%}">{{song.song_title}}</a>
                             </div>
 
                         {% endif %}
@@ -28,6 +28,6 @@
             {% endfor %}
 
         </div>
-
-    <a href="new/">노래 추가</a>
+    <a href="{% url 'music:view-artist' %}">아티스트 별로 보기</a>
+    <a href="{% url 'music:new' %}">노래 추가</a>
 {% endblock content %}

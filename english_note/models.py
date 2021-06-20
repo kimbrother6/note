@@ -9,4 +9,4 @@ class Sentence(models.Model):
     Class = models.CharField(max_length=30, null=True, blank=True) #class 로는 이름이 정의되지 않는다.
 
     def __str__(self):
-        return self.KO_word
+        return self.EN_word

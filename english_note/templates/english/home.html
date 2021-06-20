@@ -2,9 +2,6 @@
 {% load static%}
 
 {% block content %}
-<head>
-    <link rel="stylesheet" href="{% static 'english_note/styles.css' %}">
-</head>
 
 <body>
     <div class='list-box'>
@@ -31,6 +28,6 @@
 
     </div>
 
-    <a href="{% url 'english:new' %}" class='link'><div>영어문장 추가하러 가기</div></a>
+    <a href="{% url 'english:create' %}" class='link'><div>영어문장 추가하러 가기</div></a>
 </body>
 {% endblock content %}

@@ -4,5 +4,7 @@
         <h1>{{model.song_title}}</h1>
     <audio controls>
         <source src="/{{model.song}}" type="audio/mpeg">
-    </audio>
+    </audio><br><br>
+    
+    <a href="{% url 'music:home-page' %}">돌아가기</a>
 {% endblock content %}

@@ -7,8 +7,10 @@ import youtube_dl
 import pandas as pd
 
 engine = create_engine("sqlite:////Users/cubest_june/hj-django/note/db.sqlite3")
+# with engine.connect() as conn, conn.begin():
+    #data = pd.read_sql_table("music_song", conn)
 
-# Create your views here.
+
 def music_home_page(request): #메인 페이지를 호출해주는 함수
     song = Song.objects.all()
 
@@ -50,3 +52,11 @@ def music_player(request, id): #음악을 플래이시켜주는 페이지를 호
     model = Song.objects.get(id=id)
     print(model)
     return render(request, 'music/music_player.html', {'model': model})
+
+def view_artist(request):
+    song = Song.objects.all()
+    with engine.connect() as conn, conn.begin():
+            data = pd.read_sql_table("music_song", conn)
+    artist = data['artist'].unique()
+    return render(request, 'music/artist.html', {'song': song, 'artist': artist})
+

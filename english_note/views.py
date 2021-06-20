@@ -7,7 +7,6 @@ import pandas as pd
 engine = create_engine("sqlite:////Users/cubest_june/hj-django/note/db.sqlite3")
 
 
-# Create your views here.
 def english_note_home_page(request):
     word = Sentence.objects.all()
 
@@ -20,8 +19,8 @@ def english_note_home_page(request):
 def word_card(request, listName):
     words = Sentence.objects.filter(Class=listName)
     words_len_0 = list_len(words, 0) #start 0
-    words_len_1 = list_len(words, 1) #start 1
-    return render(request, 'english/word_card.html', {'words':words, 'words_len_0': words_len_0, 'words_len_1': words_len_1, 'aaa': ['1', '2']})
+
+    return render(request, 'english/word_card.html', {'words':words, 'words_len_0': words_len_0})
 
 def new_page(request):
     if request.method == 'POST':
@@ -32,6 +31,18 @@ def new_page(request):
     else:
         form = englishNoteForm
         return render(request, 'english/forms.html', {'form': form})
+
+
+def edit_word(request, id):
+    word = Sentence.objects.get(id=id)
+    if request.method == 'POST':
+        post_form = englishNoteForm(request.POST, instance=word)
+        post_form.save()
+
+        return redirect('english:home-page')
+    else:
+        form = englishNoteForm(instance=word)
+    return render(request, 'english/forms.html', {'form': form})
 
 def list_len(list, num):
     new_list = []

@@ -1,16 +1,16 @@
-.song-list {
+.elem-list {
     overflow: scroll;
     width: 250px;
     height: 350px;
     padding: 0px;
 }
 
-.song {
+.elem {
     margin-bottom: 5px;
     background-color: lightblue;
 }
 
-.classification-list {
+.class-list {
     background-color: lightgray;
     width: 250px;
     margin: 10px;
@@ -20,4 +20,3 @@
 .list {
     background-color: mediumpurple;
 }
-

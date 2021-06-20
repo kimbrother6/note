@@ -1,0 +1,30 @@
+{% extends './base.html'%}
+
+{% load static %}
+
+{% block content %}
+        <div class='list-box'>
+
+
+
+
+            {% for artist in artist %}
+            <div class='class-list'>
+
+                <a href='#'> <h3 class='list-title'>{{artist}}</h3></a>
+                <div class='elem-list'>
+                    {% for song in song %}
+                        {% if song.artist == artist%}
+
+                            <div class='elem'>
+                                <a href="{% url 'music:music-player' song.id%}">{{song.song_title}}</a>
+                            </div>
+
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+{% endblock %}

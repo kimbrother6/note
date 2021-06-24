@@ -69,6 +69,21 @@ a {
 .edit-btn {
     background-color: lightblue;
 }
+
+.bs-dropdown {
+    background-color: coral;
+}
+
+.note {
+    background-color: coral;
+    width: 130px;
+    height: 150px;
+    text-align: center;
+    margin: 0px;
+    float: left;
+    margin-left: 30px;
+    font-size: 30px;
+}
 /* 웹에서 받아온 카드 뒤집는 css*/
 /* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
 .flip-card {

@@ -1,10 +1,10 @@
-{% extends './base.html'%}
+{% comment %} {% extends './base.html'%} {% endcomment %}
     
-{% block content %}
+{% comment %} {% block content %} {% endcomment %}
         <h1>{{model.song_title}}</h1>
-    <audio controls>
+    <audio controls autoplay>
         <source src="/{{model.song}}" type="audio/mpeg">
-    </audio><br><br>
-    
+    </audio>
+    <a href="{% url 'music:edit' model.id %}">수정하기</a>
     <a href="{% url 'music:home-page' %}">돌아가기</a>
-{% endblock content %}
+{% comment %} {% endblock content %} {% endcomment %}

@@ -1,7 +1,9 @@
 from django import forms
+from django.db.models import fields
+from .models import Song
 
-class SongForm(forms.Form):
-    artist = forms.CharField(label='아티스트')
-    song_title = forms.CharField(label='노래 제목')
-    song_url = forms.CharField(label='노래 링크')
-    Class = forms.CharField(label='분류')
+class SongForm(forms.ModelForm):
+
+    class Meta:
+        model = Song
+        fields = ['artist', 'song_title', 'song_url', 'Class']

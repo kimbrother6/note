@@ -1,0 +1,9 @@
+{% extends './base.html' %}
+
+{% block content %}
+    {% for song in songs %}
+        <audio controls>
+            <source src="/{{song.song}}" type="audio/mpeg">
+        </audio>
+    {% endfor %}
+{% endblock content %}

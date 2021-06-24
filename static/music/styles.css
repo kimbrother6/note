@@ -8,6 +8,7 @@
 .elem {
     margin-bottom: 5px;
     background-color: lightblue;
+    text-align: center;
 }
 
 .class-list {
@@ -20,3 +21,10 @@
 .list {
     background-color: mediumpurple;
 }
+
+.list-title {
+    font-size: 28px;
+    height: 80px;
+    text-align: center;
+}
+

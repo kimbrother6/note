@@ -1,0 +1,25 @@
+{% extends './base.html' %}
+
+{% block content %}
+    <a href="{% url 'english:word-card' listName 'none'%}" class='a'>
+        <div class='note'>
+            <div class="helper"></div>
+            모두 보기
+        </div>
+    </a>
+
+    <div class="dropdown note">
+    <div class="helper"></div>
+    <button class="btn btn-secondary dropdown-toggle bs-dropdown" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        외운 정도
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="{% url 'english:word-card' listName '0'%}">0</a>
+        <a class="dropdown-item" href="{% url 'english:word-card' listName '1'%}">1</a>
+        <a class="dropdown-item" href="{% url 'english:word-card' listName '2'%}">2</a>
+        <a class="dropdown-item" href="{% url 'english:word-card' listName '3'%}">3</a>
+        <a class="dropdown-item" href="{% url 'english:word-card' listName '4'%}">4</a>
+        <a class="dropdown-item" href="{% url 'english:word-card' listName '5'%}">5</a>
+    </div>
+    </div>
+{% endblock content %}

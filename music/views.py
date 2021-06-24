@@ -1,3 +1,4 @@
+from sqlalchemy.log import instance_logger
 from music.models import Song
 from django.shortcuts import render, redirect
 from .forms import SongForm
@@ -5,6 +6,7 @@ from .models import Song
 from sqlalchemy import create_engine
 import youtube_dl
 import pandas as pd
+
 
 engine = create_engine("sqlite:////Users/cubest_june/hj-django/note/db.sqlite3")
 # with engine.connect() as conn, conn.begin():
@@ -49,9 +51,23 @@ def new_song(request): #form
         return render(request, 'music/forms.html', {'form': form})
 
 def music_player(request, id): #음악을 플래이시켜주는 페이지를 호출해주는 함수
-    model = Song.objects.get(id=id)
-    print(model)
-    return render(request, 'music/music_player.html', {'model': model})
+    song = Song.objects.get(id=id)
+    return render(request, 'music/music_player.html', {'model': song})
+
+def list_player(request, list_name):
+    songs = Song.objects.filter(Class=list_name)
+    return render(request, 'music/list_player.html', {'songs': songs})
+
+def edit(request, id):
+    song = Song.objects.get(id=id)
+    if request.method == 'POST':
+        song_form = SongForm(request.POST, instance=song)
+        song_form.save()
+
+        return redirect('music:view-artist')
+    else:
+        form = SongForm(instance=song)
+        return render(request, 'music/forms.html', {'form': form})
 
 def view_artist(request):
     song = Song.objects.all()

@@ -16,15 +16,21 @@ def english_note_home_page(request):
 
     return render(request, 'english/home.html', {'word': word, 'class_list': class_list})
 
-def word_card(request, listName):
-    words = Sentence.objects.filter(Class=listName)
+def word_card(request, Class, memorize):
+    words = Sentence.objects.filter(Class=Class)
+
+    if memorize != 'none':
+        words = words.filter(memorize=memorize)
+
     words_len_0 = list_len(words, 0) #start 0
 
-    return render(request, 'english/word_card.html', {'words':words, 'words_len_0': words_len_0})
+    return render(request, 'english/word_card.html', {'words':words, 'words_len_0': words_len_0, 'check_content_exists': str(len(words)==0)})
 
 def new_page(request):
     if request.method == 'POST':
         post_form = englishNoteForm(request.POST)
+        post_form = post_form.save(commit=False)
+        post_form.memorize = '0'
         post_form.save()
 
         return redirect('english:home-page')
@@ -42,7 +48,11 @@ def edit_word(request, id):
         return redirect('english:home-page')
     else:
         form = englishNoteForm(instance=word)
-    return render(request, 'english/forms.html', {'form': form})
+        return render(request, 'english/forms.html', {'form': form})
+
+def view_class(request, listName):
+
+    return render(request, 'english/view_class.html', {'listName': listName})
 
 def list_len(list, num):
     new_list = []

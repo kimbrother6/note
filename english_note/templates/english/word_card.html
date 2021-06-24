@@ -5,47 +5,54 @@
 
 
 <body>
+    {% if check_content_exists == 'True' %}
+        <p>아무런 단어가 포함되어 있지 않습니다.</p>
+        <a href="{% url 'english:home-page'%}" class="btn btn-outline-primary" href="#" role="button">돌아가기</a>
+    {% else %}
     <div id="carouselExampleCaptions" class="carousel slide" data-bs-interval="false"> <!--data-bs-interval="false" 은 자동회전 안하게 하는 코드-->
     
-    <div class="carousel-indicators"> <!--밑에 버튼을 만들어주는 코드-->
-        {% for num in words_len_0 %} 
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{num}}" {% if num == '0' %}class="active"{% endif %}></button>
-        {% endfor %}
-    </div>
+        <div class="carousel-indicators"> <!--밑에 버튼을 만들어주는 코드-->
+            {% for num in words_len_0 %} 
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{num}}" {% if num == '0' %}class="active"{% endif %}></button>
+            {% endfor %}
+        </div>
 
-    <div class="carousel-inner"> <!--한국어, 영어 카드 html-->
-        {% for word in words %} 
-            <div class="carousel-item {% if word == words.0 %}active{% endif %}">
-                <div class='card-word'>
-                    <div class="flip-card">
-                        <div class="flip-card-inner">
-                            <div class="flip-card-front">
-                                <div class='helper'></div>
-                                {{word.KO_word}}
-                                <a href="{% url 'english:edit' word.id %}"><div class='button edit-btn'>수정하기</div></a>
+        <div class="carousel-inner"> <!--한국어, 영어 카드 html-->
+            {% for word in words %} 
+                <div class="carousel-item {% if word == words.0 %}active{% endif %}">
+                    <div class='card-word'>
+
+                        <div class="flip-card">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <div class='helper'></div>
+                                    {{word.KO_word}}
+                                    <a href="{% url 'english:edit' word.id %}"><div class='button edit-btn'>수정하기</div></a>
+                                </div>
+                                <div class="flip-card-back">
+                                    <div class='helper'></div>
+                                    {{word.EN_word}}
+                                    <a href="{% url 'english:edit' word.id %}"><div class='button edit-btn'>수정하기</div></a>
+                                </div>
                             </div>
-                            <div class="flip-card-back">
-                                <div class='helper'></div>
-                                {{word.EN_word}}
-                                <a href="{% url 'english:edit' word.id %}"><div class='button edit-btn'>수정하기</div></a>
-                            </div>
+
                         </div>
                     </div>
                 </div>
+            {% endfor %}
+
+
+        <button class=" carousel-control-prev bs-button" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next bs-button" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
         </div>
-        {% endfor %}
-
-
-    <button class=" carousel-control-prev bs-button" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next bs-button" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
+        </div>
     </div>
-    </div>
-    </div>
+    {% endif %}
 </body>
 {% endblock content %}

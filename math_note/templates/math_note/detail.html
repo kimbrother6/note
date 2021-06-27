@@ -1,6 +1,14 @@
-{% comment %} {% extends './base.html'%} {% endcomment %}
+{% extends 'home/base.html'%}
+{% load static %}
 
-{% comment %} {% block content %} {% endcomment %}
+{% block content %}
+<head>
+    <meta charset="utf-8">
+    <title>오답노트 목록</title>
+    <link rel="stylesheet" href="{% static 'math_note/styles.css'%}">
+</head>
+
+
 <h1>{{post.book}} p{{post.page}}   #{{post.number}}</h1>
 <h4>
     대단원: {{post.big_unit}}  <br>
@@ -11,5 +19,6 @@
 {{post.dt_created}}<br>
 {{post.dt_modified}}<br>
 
-<a href={% url 'math:home-page' %}>목록으로 돌아가기</a>
-{% comment %} {% endblock content %} {% endcomment %}
+
+<a class="btn btn-outline-primary" href={% url 'math:home-page' %} role="button">목록으로 돌아가기</a>
+{% endblock content %}

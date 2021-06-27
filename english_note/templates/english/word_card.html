@@ -1,8 +1,10 @@
-{% extends './base.html' %}
+{% extends 'home/base.html' %}
 {% load static %}
 
 {% block content %}
-
+<head>
+    <link rel="stylesheet" href="{% static 'english_note/styles.css' %}">
+</head>
 
 <body>
     {% if check_content_exists == 'True' %}

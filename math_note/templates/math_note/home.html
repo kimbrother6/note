@@ -1,41 +1,64 @@
-{% extends './base.html'%}
+{% extends 'home/base.html'%}
 {% load static %}
 
 
 {% block content %}
-<meta charset="utf-8">
-<title>오답노트 목록</title>
-<link rel="stylesheet" href="{% static 'math_note/styles.css'%}">
+<head>
+    <meta charset="utf-8">
+    <title>오답노트 목록</title>
+    <link rel="stylesheet" href="{% static 'math_note/styles.css'%}">
+</head>
+
+<a class="btn btn-outline-primary" id='go-create' href="{% url 'math:create' %}" role="button">오답노트 쓰러가기</a>
+
+    {% if yesterdayPost %}
+        <div id='yesterday-card-list'>
+                <h1>어제 쓴 오답노트</h1>
+            {% for post in yesterdayPost %}
+                <div class="card yesterday-card" style="width: 18rem;">
+                    <img src="{{post.image.url}}" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ post.book }} p{{post.page}} #{{post.number}}</h5>
+                        <p class="card-text">{{ post.WR }}</p>
+                        <a href="{{post.id}}" class="btn btn-primary">오답노트</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
 
 
-<ul>
-어제 쓴 오답노트
-  {% for post in yesterdayPost %}
-    <a href="{{post.id}}">
-        <div class='post'>
-            <p>{{ post.book }}</p>
-            <img src="{{post.image.url}}">
+    {% if todayPost %}
+        <div id='today-card-list'>
+            <h1>오늘 쓴 오답노트</h1>
+            {% for post in todayPost %}
+                <div class="card today-card" style="width: 18rem;">
+                    <img src="{{post.image.url}}" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ post.book }} p{{post.page}} #{{post.number}}</h5>
+                        <p class="card-text">{{ post.WR }}</p>
+                        <a href="{{post.id}}" class="btn btn-primary">오답노트</a>
+                    </div>
+                </div>
+            {% endfor %}
         </div>
-    </a>
-  {% endfor %}<br>
-  오늘 쓴 오답노트
-  {% for post in todayPost %}
-    <a href="{{post.id}}">
-        <div class='post'>
-            <p>{{ post.book }}</p>
-            <img src="{{post.image.url}}">
+    {% endif %}
+
+    {% if model %}
+        <div id='all-card-list'>
+            <h1>모든 오답노트</h1>
+            {% for post in model %}
+                <div class="card all-card" style="width: 18rem;">
+                    <img src="{{post.image.url}}" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ post.book }} p{{post.page}} #{{post.number}}</h5>
+                        <p class="card-text">{{ post.WR }}</p>
+                        <a href="{{post.id}}" class="btn btn-primary">오답노트</a>
+                    </div>
+                </div>
+            {% endfor %}
         </div>
-    </a>
-  {% endfor %}<br>
-  모든 포스트
-    {% for post in model %}
-    <a href="{% url 'math:detail-page' post.id%}">
-        <div class='post'>
-            <p>{{ post.book }}</p>
-            <img src="{{post.image.url}}">
-        </div>
-    </a>
-  {% endfor %}
-  <a href='new/'>오답노트 쓰러가기</a>
-</ul>
+    {% endif %}
+
+
 {% endblock content %}

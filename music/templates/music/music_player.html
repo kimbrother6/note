@@ -1,10 +1,18 @@
-{% comment %} {% extends './base.html'%} {% endcomment %}
-    
-{% comment %} {% block content %} {% endcomment %}
+{% extends 'home/base.html'%}
+{% load static %}
+
+{% block content %}
+    <head>
+        <title>music</title>
+        <link rel="stylesheet" href="{% static 'music/styles.css' %}">
+    </head>
+
         <h1>{{model.song_title}}</h1>
     <audio controls autoplay>
         <source src="/{{model.song}}" type="audio/mpeg">
     </audio>
-    <a href="{% url 'music:edit' model.id %}">수정하기</a>
-    <a href="{% url 'music:home-page' %}">돌아가기</a>
-{% comment %} {% endblock content %} {% endcomment %}
+    <a class="btn btn-outline-primary" href="{% url 'music:edit' model.id %}" role="button">수정하기</a>
+    <a class="btn btn-outline-primary" href="{% url 'music:home-page' %}" role="button">돌아가기</a>
+
+    
+{% endblock content %}

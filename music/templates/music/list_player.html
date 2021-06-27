@@ -1,6 +1,12 @@
-{% extends './base.html' %}
+{% extends 'home/base.html' %}
+{% load static %}
 
 {% block content %}
+    <head>
+        <title>music</title>
+        <link rel="stylesheet" href="{% static 'music/styles.css' %}">
+    </head>
+    
     {% for song in songs %}
         <audio controls>
             <source src="/{{song.song}}" type="audio/mpeg">

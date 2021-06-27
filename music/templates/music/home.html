@@ -1,9 +1,10 @@
-{% extends './base.html'%}
+{% extends 'home/base.html'%}
 
 {% load static %}
 
 {% block content %}
     <head>
+        <title>music</title>
         <link rel="stylesheet" href="{% static 'music/styles.css' %}">
     </head>
 
@@ -28,6 +29,6 @@
             {% endfor %}
 
         </div>
-    <a href="{% url 'music:view-artist' %}">아티스트 별로 보기</a>
-    <a href="{% url 'music:new' %}">노래 추가</a>
+    <a class="btn btn-outline-primary" href="{% url 'music:view-artist' %}" role="button">아티스트 별로 보기</a>
+    <a class="btn btn-outline-primary" href="{% url 'music:create' %}" role="button">노래 추가</a>
 {% endblock content %}

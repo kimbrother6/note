@@ -46,12 +46,6 @@ a {
     color: black;
 }
 
-.helper {
-    display: inline-block;
-    height: 100%;
-    vertical-align: middle;
-}
-
 .inner {
     background-color: gray;
     height: 80%;

@@ -1,10 +1,16 @@
-{% extends './base.html'%}
+{% extends 'home/base.html'%}
+{% load static%}
 
 {% block content %}
-{% load static%}
+<head>
+    <meta charset="utf-8">
+    <title>오답노트 목록</title>
+    <link rel="stylesheet" href="{% static 'math_note/styles.css'%}">
+</head>
+
 <form method="post" enctype="multipart/form-data">{% csrf_token %}
     {{form.as_ul}}
     <input type='submit' value='전송'>
 </form> 
-<a href={% url 'math:home-page' %}> 글쓰기 취소 </a>
+<a class="btn btn-outline-primary" href="{% url 'math:home-page' %}" role="button">글쓰기 취소</a>
 {% endblock content %}

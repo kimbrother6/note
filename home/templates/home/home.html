@@ -1,37 +1,26 @@
-{% extends './base.html'%}
+{% extends 'home/base.html' %}
 {% load static %}
 
 {% block content %}
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title></title>
-        <link rel="stylesheet" href="{% static 'home/styles.css' %}">
-        
-    </head>
     <body>
-
-        <div>
-            <a href="{% url 'home:home-page' %}" class='a'>
-                <div class='note'>
-                    <div class="helper"></div>
-                    수학
+        <div class='page-elem'>
+            
+                <div id='english_app' class='app_card'>
+                    <img src="media/images/English.jpg" class="app_image">
+                    <a class="btn btn-outline-primary app-btn" href="{% url 'english:home-page' %}"> <h3>영어단어 카드</h3> </a>
                 </div>
-            </a>
+            
+            <div id='math_app' class='app_card'>
+                <img src="media/images/Math.jpg" class="app_image">
+                <a class="btn btn-outline-primary app-btn" href="{% url 'math:home-page' %}"> <h3>수학 오답노트</h3></a>
+            </div>
 
-            <a href="{% url 'english:home-page' %}" class='a'>
-                <div class='note'>
-                    <div class="helper"></div>
-                    영어
-                </div>
-            </a>
+            <div id='music_app' class='app_card'>
+                <img src="media/images/Music.jpg" class="app_image">
+                <a class="btn btn-outline-primary app-btn" href="{% url 'music:home-page' %}"> <h3>음악 플레이어</h3></a>
+            </div>
 
-            <a href="{% url 'music:home-page' %}"  class='a'>
-                <div class='note'>
-                    <div class="helper"></div>
-                    노래
-                </div>
-            </a>
         </div>
 
     </body>

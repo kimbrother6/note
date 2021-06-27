@@ -5,3 +5,20 @@
 a {
     text-decoration: none;
 }
+
+.yesterday-card, .today-card, .all-card {
+    float: left;
+    margin-left: 10px;
+}
+
+#all-card-list, #today-card-list, #yesterday-card-list {
+    clear: left;
+}
+
+#go-create {
+    margin-bottom: 10px;
+}
+
+.page-elem {
+    text-align: center;
+}

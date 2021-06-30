@@ -1,15 +1,15 @@
 {% extends 'home/base.html'%}
 {% load static%}
 
-{% block content %}
-<head>
+{% block head %}
+    <title>English</title>
     <link rel="stylesheet" href="{% static 'english_note/styles.css' %}">
-</head>
+{% endblock head %}
 
-<form method="post">{% csrf_token %}
-    {{form.as_ul}}
-    <input type='submit' value='전송'>
-</form>
-<a class="btn btn-outline-primary" href="{% url 'english:home-page' %}" role="button">글쓰기 취소</a>
-
+{% block content %}
+    <form method="post">{% csrf_token %}
+        {{form.as_ul}}
+        <input type='submit' value='전송'>
+    </form>
+    <a class="btn btn-outline-primary" href="{% url 'english:home-page' %}" role="button">글쓰기 취소</a>
 {% endblock content %}

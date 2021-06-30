@@ -76,3 +76,7 @@ def view_artist(request):
     artist = data['artist'].unique()
     return render(request, 'music/artist.html', {'song': song, 'artist': artist})
 
+def delete(request ,id):
+    song = Song.objects.get(id=id)
+    song.delete()
+    return redirect('music:home-page')

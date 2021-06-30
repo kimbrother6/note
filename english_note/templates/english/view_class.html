@@ -1,10 +1,13 @@
 {% extends 'home/base.html' %}
 {% load static %}
 
-{% block content %}
-<head>
+{% block head %}
+    <title>English</title>
     <link rel="stylesheet" href="{% static 'english_note/styles.css' %}">
-</head>
+{% endblock head %}
+
+{% block content %}
+
 
     <a href="{% url 'english:word-card' listName 'none'%}" class='a'>
         <div class='note'>

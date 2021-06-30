@@ -1,15 +1,13 @@
 {% extends 'home/base.html'%}
 {% load static %}
 
+{% block head %}
+    <title>Math</title>
+    <link rel="stylesheet" href="{% static 'math_note/styles.css' %}">
+{% endblock head %}
 
 {% block content %}
-<head>
-    <meta charset="utf-8">
-    <title>오답노트 목록</title>
-    <link rel="stylesheet" href="{% static 'math_note/styles.css'%}">
-</head>
-
-<a class="btn btn-outline-primary" id='go-create' href="{% url 'math:create' %}" role="button">오답노트 쓰러가기</a>
+    <a class="btn btn-outline-primary" id='go-create' href="{% url 'math:create' %}" role="button">오답노트 쓰러가기</a>
 
     {% if yesterdayPost %}
         <div id='yesterday-card-list'>

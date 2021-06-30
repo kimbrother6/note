@@ -2,34 +2,31 @@
 
 {% load static %}
 
+{% block head %}
+    <title>Music</title>
+    <link rel="stylesheet" href="{% static 'music/styles.css' %}">
+{% endblock head %}
+
 {% block content %}
-    <head>
-        <title>music</title>
-        <link rel="stylesheet" href="{% static 'music/styles.css' %}">
-    </head>
-    
-        <div class='list-box'>
+    <div class='list-box'>
 
+        {% for artist in artist %}
+        <div class='class-list'>
 
+            <a href='#'> <div class='list-title'>{{artist}}</div></a>
+            <div class='elem-list'>
+                {% for song in song %}
+                    {% if song.artist == artist%}
 
+                        <div class='elem'>
+                            <a href="{% url 'music:detail' song.id %}" class='song-title'>{{song.song_title}}</a>
+                        </div>
 
-            {% for artist in artist %}
-            <div class='class-list'>
-
-                <a href='#'> <div class='list-title'>{{artist}}</div></a>
-                <div class='elem-list'>
-                    {% for song in song %}
-                        {% if song.artist == artist%}
-
-                            <div class='elem'>
-                                <a href="{% url 'music:music-player' song.id%}" class='song-title'>{{song.song_title}}</a>
-                            </div>
-
-                        {% endif %}
-                    {% endfor %}
-                </div>
+                    {% endif %}
+                {% endfor %}
             </div>
-            {% endfor %}
-
         </div>
+        {% endfor %}
+
+    </div>
 {% endblock %}

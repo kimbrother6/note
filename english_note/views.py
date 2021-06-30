@@ -51,8 +51,12 @@ def edit_word(request, id):
         return render(request, 'english/forms.html', {'form': form})
 
 def view_class(request, listName):
-
     return render(request, 'english/view_class.html', {'listName': listName})
+
+def delete(request ,id):
+    word = Sentence.objects.get(id=id)
+    word.delete()
+    return redirect('english:home-page')
 
 def list_len(list, num):
     new_list = []

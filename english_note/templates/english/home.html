@@ -1,26 +1,27 @@
 {% extends 'home/base.html'%}
 {% load static%}
 
-{% block content %}
-<head>
+{% block head %}
     <title>English</title>
     <link rel="stylesheet" href="{% static 'english_note/styles.css' %}">
-</head>
+{% endblock head %}
 
+{% block content %}
 <body>
     <div class='list-box'>
 
         {% for Class in class_list%}
         <div class='class-list'>
 
-            <a href="{% url 'english:view-class' Class%}"> <h3 class='list-title'>{{Class}}</h3></a>
+            <a class='list-title-a' href="{% url 'english:view-class' Class%}"> <h3 class='list-title'>{{Class}}</h3></a>
             <div class='word-list'>
                 {% for word in word %}
                     {% if word.Class == Class%}
 
                         <div class='word'>
-                            <a href="#">{{word.KO_word}}</a> <!--개별 영어단어 보여주기 만들어야됨-->
-                            {{word.memorize}}<br>
+                            <a class='word-text' href="#">{{word.KO_word}}</a> <!--개별 영어단어 보여주기 만들어야됨-->
+                            {{word.memorize}}
+                            <a class='delete-btn' href="{% url 'english:delete' word.id %}" role="button">삭제</a>
                         </div>
 
                     {% endif %}

@@ -1,24 +1,27 @@
 {% extends 'home/base.html'%}
 {% load static %}
 
+{% block head %}
+    <title>Math</title>
+    <link rel="stylesheet" href="{% static 'math_note/styles.css' %}">
+{% endblock head %}
+
 {% block content %}
-<head>
-    <meta charset="utf-8">
-    <title>오답노트 목록</title>
-    <link rel="stylesheet" href="{% static 'math_note/styles.css'%}">
-</head>
+    <h1>{{post.book}} p{{post.page}}   #{{post.number}}</h1>
+    
+    <p>{{post.WR|linebreaksbr}}</p>
+    <img src="{{post.image.url}}"><br>
+    {{post.dt_created}}<br>
+    {{post.dt_modified}}<br>
 
+    {% if post.big_unit %}
+        대단원: {{post.big_unit}}  <br>
+    {% endif %}
+    {% if post.middle_unit %}
+        중단원: {{post.middle_unit}}
+    {% endif %}
 
-<h1>{{post.book}} p{{post.page}}   #{{post.number}}</h1>
-<h4>
-    대단원: {{post.big_unit}}  <br>
-    중단원: {{post.middle_unit}}
-</h4>
-<p>{{post.WR|linebreaksbr}}</p>
-<img src="{{post.image.url}}"><br>
-{{post.dt_created}}<br>
-{{post.dt_modified}}<br>
-
-
-<a class="btn btn-outline-primary" href={% url 'math:home-page' %} role="button">목록으로 돌아가기</a>
+    <a class="btn btn-outline-danger" href="{% url 'math:delete' post.id %}" role="button">삭제</a>
+    <a class="btn btn-outline-primary" href="{% url 'math:edit' post.id %}" role="button">수정</a>
+    <a class="btn btn-outline-primary" href="{% url 'math:home-page' %}" role="button">돌아가기</a>
 {% endblock content %}

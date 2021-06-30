@@ -1,15 +1,15 @@
 {% extends 'home/base.html'%}
 {% load static %}
 
+{% block head %}
+    <title>Music</title>
+    <link rel="stylesheet" href="{% static 'music/styles.css' %}">
+{% endblock head %}
+
 {% block content %}
-    <head>
-        <title>music</title>
-        <link rel="stylesheet" href="{% static 'music/styles.css' %}">
-    </head>
-    
     <form method="post" enctype="multipart/form-data">{% csrf_token %}
-        {{form.as_ul}}
-        <input type='submit' value='전송'>
+        {{form}}
+        <input class="btn btn-primary" type='submit' value='전송'>
     </form> 
     <a class="btn btn-outline-primary" href="{% url 'music:home-page' %}" role="button">노래추가 취소</a>
 {% endblock content %}

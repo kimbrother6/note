@@ -5,6 +5,8 @@ from . import views
 app_name = 'math'
 urlpatterns = [
     path('', views.HomePageView, name='home-page'),
-    path('new/', views.newPage, name='create'),
-    path('<int:id>/', views.detailPage, name='detail-page')
+    path('create/', views.newPage, name='create'),
+    path('<int:id>/', views.detail, name='detail'),
+    path('<int:id>/edit/', views.edit, name='edit'),
+    path('<int:id>/delete/', views.delete, name='delete'),
 ]

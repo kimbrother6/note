@@ -25,7 +25,7 @@ def newPage(request):
         big_unit = choosing_unit(book, page, 'big')
         middle_unit = choosing_unit(book, page, 'middle')
 
-        newPost = Post(
+        new_post = Post(
             book = book,
             page = page,
             number = request.POST['number'],
@@ -34,19 +34,32 @@ def newPage(request):
             middle_unit = middle_unit,
             image = request.FILES['image'],
         )
-        newPost.save()
-        return redirect('math:detail-page', id=newPost.id)
+        new_post.save()
+        return redirect('math:detail', id=new_post.id)
     else:
         note_form = PostForm
         return render(request, 'math_note/forms.html', {'form': note_form})
 
-def detailPage(request, id):
+def detail(request, id):
     post = Post.objects.get(id=id)
     return render(request, 'math_note/detail.html', {'post': post})
 
 
+def edit(request, id):
+    post = Post.objects.get(id=id)
+    if request.method == 'POST':
+        post_form = PostForm(request.POST, instance=post)
+        post_form.save()
 
+        return redirect('math:home-page')
+    else:
+        form = PostForm(instance=post)
+        return render(request, 'math_note/forms.html', {'form': form})
 
+def delete(request ,id):
+    post = Post.objects.get(id=id)
+    post.delete()
+    return redirect('math:home-page')
 
 
 def choosing_unit(book, page, big_or_middle):

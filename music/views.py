@@ -45,7 +45,7 @@ def new_song(request): #form
         new_snog.save()
         print(song)
 
-        return redirect('music:music-player', id=new_snog.id)
+        return redirect('music:detail', id=new_snog.id)
     else:
         form = SongForm
         return render(request, 'music/forms.html', {'form': form})

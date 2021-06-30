@@ -29,14 +29,19 @@
                             <div class="flip-card-inner">
                                 <div class="flip-card-front">
                                     <div class='helper'></div>
-                                    {{word.KO_word}}
+                                    <div class='word-card-text'>
+                                        {{word.KO_word|linebreaks}}
+                                    </div>
                                     <a href="{% url 'english:edit' word.id %}"><div class='button edit-btn'>수정</div></a>
                                 </div>
                                 <div class="flip-card-back">
                                     <div class='helper'></div>
-                                    {{word.EN_word}}
+                                    <div class='word-card-text'>
+                                        {{word.EN_word|linebreaks}}
+                                    </div>
                                     <a href="{% url 'english:edit' word.id %}"><div class='button edit-btn'>수정</div></a>
                                 </div>
+                                
                             </div>
 
                         </div>
@@ -55,6 +60,6 @@
         </div>
         </div>
     </div>
-    {% endif %}
+{% endif %}
 </body>
 {% endblock content %}

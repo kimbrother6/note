@@ -87,6 +87,18 @@
     font-size: 30px;
 }
 
+.word-card-text {
+    vertical-align: middle;
+    display: inline-block;
+    width: 90%;
+}
+.flip-card-inner a{
+    text-decoration: none;
+}
+
+.word .edit-btn {
+    color: green;
+}
 /* 웹에서 받아온 카드 뒤집는 css*/
 /* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
 .flip-card {

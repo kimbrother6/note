@@ -12,4 +12,5 @@
             <source src="/{{song.song}}" type="audio/mpeg">
         </audio>
     {% endfor %}
+    <a class="btn btn-outline-primary" href="{% url 'music:home-page' %}" role="button">돌아가기</a>
 {% endblock content %}

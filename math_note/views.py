@@ -7,7 +7,7 @@ from datetime import datetime, timedelta
 from pytz import timezone
 
 
-def HomePageView(request):
+def math_home_page(request):
     today =  datetime.now(timezone('Asia/Seoul'))
     yesterday = today - timedelta(days=1)
 
@@ -17,7 +17,7 @@ def HomePageView(request):
 
     return render(request, 'math_note/home.html', {'model': model, 'todayPost': todayPost, 'yesterdayPost': yesterdayPost})
 
-def newPage(request):
+def create(request):
     if request.method == 'POST':
 
         book = request.POST['book']
@@ -45,7 +45,7 @@ def detail(request, id):
     return render(request, 'math_note/detail.html', {'post': post})
 
 
-def edit(request, id):
+def update(request, id):
     post = Post.objects.get(id=id)
     if request.method == 'POST':
         post_form = PostForm(request.POST, instance=post)

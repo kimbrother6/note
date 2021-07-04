@@ -1,0 +1,13 @@
+{% extends 'music/music_player.html'%}
+{% load static %}
+
+    
+
+{% block post_confirm_delete %}
+<link rel="stylesheet" href="{% static 'music/styles.css' %}">
+
+    <form method="post" id='post_confirm_delete'>{% csrf_token %}
+        정말 이 포스트를 삭제 하시겠습니까?
+        <input class="btn btn-primary" type='submit' value='전송'>
+    </form> 
+{% endblock post_confirm_delete %}

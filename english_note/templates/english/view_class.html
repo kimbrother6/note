@@ -8,7 +8,7 @@
 
 {% block content %}
 
-
+    <h2>카드로 보기</h2>
     <a href="{% url 'english:word-card' listName 'none'%}" class='a'>
         <div class='note'>
             <div class="helper"></div>
@@ -32,4 +32,12 @@
 
         </ul>
     </div>
+    <h2 style='clear: left;'>그외</h2>
+    {{listName}}
+    <a href="{% url 'english:write' listName %}" class='a'>
+    <div class='note'>
+        <div class="helper"></div>
+        서술형
+    </div>
+    </a>
 {% endblock content %}

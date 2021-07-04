@@ -20,9 +20,8 @@
 
                         <div class='word'>
                             <a class='word-text' href="#">{{word.KO_word}}</a> <!--개별 영어단어 보여주기 만들어야됨-->
-                            {{word.memorize}}
-                            <a class='delete-btn' href="{% url 'english:delete' word.id %}" role="button">삭제</a>
-                            <a class='edit-btn' href="{% url 'english:edit' word.id %}" role="button">수정</a>
+                            <a class='delete-btn' href="{% url 'english:delete' word.id %}" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
+                            <a class='edit-btn' href="{% url 'english:update' word.id %}">수정</a>
                         </div>
 
                     {% endif %}
@@ -33,6 +32,6 @@
         {% endfor %}
 
     </div>
-    <a class="btn btn-outline-primary" href="{% url 'english:create' %}" role="button">영어문장 추가하러 가기</a>
+    <a class="btn btn-outline-primary" href="{% url 'english:create' %}">영어문장 추가하러 가기</a>
 </body>
 {% endblock content %}

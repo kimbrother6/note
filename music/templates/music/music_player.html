@@ -8,12 +8,15 @@
 
 {% block content %}
     <h1>{{model.song_title}}</h1>
+    아티스트: {{ model.artist }}<br>
+    {{ model.Class }}<br>
 
     <audio controls autoplay>
         <source src="/{{model.song}}" type="audio/mpeg">
     </audio>
 
-    <a class="btn btn-outline-danger" href="{% url 'music:delete' model.id %}" role="button">삭제</a>
-    <a class="btn btn-outline-primary" href="{% url 'music:edit' model.id %}" role="button">수정하기</a>
+    {% comment %} <a class="btn btn-outline-danger" onclick="alert('정말 삭제하시겠습니까?');" >삭제</a> {% endcomment %}
+    <a href="{% url 'music:delete' model.id %}" class="btn btn-outline-danger" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
+    <a class="btn btn-outline-primary" href="{% url 'music:update' model.id %}" role="button">수정하기</a>
     <a class="btn btn-outline-primary" href="{% url 'music:home-page' %}" role="button">돌아가기</a>
 {% endblock content %}

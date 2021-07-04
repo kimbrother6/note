@@ -28,3 +28,6 @@
     text-align: center;
 }
 
+#post_confirm_delete {
+    float: right;
+}

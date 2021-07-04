@@ -22,7 +22,7 @@ def music_home_page(request): #메인 페이지를 호출해주는 함수
 
     return render(request, 'music/home.html', {'song': song, 'class_list': class_list})
 
-def new_song(request): #form
+def create(request): #form
     if request.method == 'POST':
         song_title = request.POST['song_title']
         song_url = request.POST['song_url']
@@ -50,15 +50,11 @@ def new_song(request): #form
         form = SongForm
         return render(request, 'music/forms.html', {'form': form})
 
-def music_player(request, id): #음악을 플래이시켜주는 페이지를 호출해주는 함수
+def detail(request, id): #음악을 플래이시켜주는 페이지를 호출해주는 함수
     song = Song.objects.get(id=id)
     return render(request, 'music/music_player.html', {'model': song})
 
-def list_player(request, list_name):
-    songs = Song.objects.filter(Class=list_name)
-    return render(request, 'music/list_player.html', {'songs': songs})
-
-def edit(request, id):
+def update(request, id):
     song = Song.objects.get(id=id)
     if request.method == 'POST':
         song_form = SongForm(request.POST, instance=song)
@@ -69,6 +65,12 @@ def edit(request, id):
         form = SongForm(instance=song)
         return render(request, 'music/forms.html', {'form': form})
 
+def list_player(request, list_name):
+    songs = Song.objects.filter(Class=list_name)
+    return render(request, 'music/list_player.html', {'songs': songs})
+
+
+
 def view_artist(request):
     song = Song.objects.all()
     with engine.connect() as conn, conn.begin():
@@ -78,5 +80,8 @@ def view_artist(request):
 
 def delete(request ,id):
     song = Song.objects.get(id=id)
-    song.delete()
-    return redirect('music:home-page')
+    if request.method == 'POST':
+        song.delete()
+        return redirect('music:home-page')
+    else:
+        return render(request, 'home/post_confirm_delete.html', {'song': song})

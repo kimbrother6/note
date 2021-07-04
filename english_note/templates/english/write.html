@@ -1,0 +1,20 @@
+{% extends 'home/base.html'%}
+{% load static%}
+
+{% block head %}
+    <title>English</title>
+    <link rel="stylesheet" href="{% static 'english_note/styles.css' %}">
+{% endblock head %}
+
+{% block content %}
+    {% for word in word %}
+    {{word.KO_word}}
+        <form method="post" autocomplete="off" action="{% url 'english:T_F' %}">{% csrf_token %}
+
+            <input type="text" id="EN_answer" name="EN_answer" placeholder='영어로 정답을 입력하세요.'><br>
+
+            <input type='submit' value='전송'>
+        </form>
+    {% endfor %}
+    <a class="btn btn-outline-primary" href="{% url 'english:home-page' %}" role="button">글쓰기 취소</a>
+{% endblock content %}

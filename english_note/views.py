@@ -7,7 +7,7 @@ import pandas as pd
 engine = create_engine("sqlite:////Users/cubest_june/hj-django/note/db.sqlite3")
 
 
-def english_note_home_page(request):
+def english_home_page(request):
     word = Sentence.objects.all()
 
     with engine.connect() as conn, conn.begin():
@@ -16,17 +16,7 @@ def english_note_home_page(request):
 
     return render(request, 'english/home.html', {'word': word, 'class_list': class_list})
 
-def word_card(request, Class, memorize):
-    words = Sentence.objects.filter(Class=Class)
-
-    if memorize != 'none':
-        words = words.filter(memorize=memorize)
-
-    words_len_0 = list_len(words, 0) #start 0
-
-    return render(request, 'english/word_card.html', {'words':words, 'words_len_0': words_len_0, 'check_content_exists': str(len(words)==0)})
-
-def new_page(request):
+def create(request):
     if request.method == 'POST':
         post_form = englishNoteForm(request.POST)
         post_form = post_form.save(commit=False)
@@ -38,8 +28,17 @@ def new_page(request):
         form = englishNoteForm
         return render(request, 'english/forms.html', {'form': form})
 
+def word_card(request, Class, memorize):
+    words = Sentence.objects.filter(Class=Class)
 
-def edit_word(request, id):
+    if memorize != 'none':
+        words = words.filter(memorize=memorize)
+
+    words_len_0 = list_len(words, 0) #start 0
+
+    return render(request, 'english/word_card.html', {'words':words, 'words_len_0': words_len_0, 'check_content_exists': str(len(words)==0)})
+
+def update(request, id):
     word = Sentence.objects.get(id=id)
     if request.method == 'POST':
         post_form = englishNoteForm(request.POST, instance=word)
@@ -56,6 +55,22 @@ def view_class(request, listName):
 def delete(request ,id):
     word = Sentence.objects.get(id=id)
     word.delete()
+    return redirect('english:home-page')
+
+def write(request, Class):
+    word = Sentence.objects.filter(Class=Class)
+    if request.method == 'POST':
+        if request.POST['EN_answer'] == word[0].EN_word:
+            print('정답입니다.')
+            return redirect('english:home-page')
+        else: 
+            print('틀렸습니다.')
+            return redirect('english:home-page')
+    else:
+        return render(request, 'english/write.html', {'word': word})
+
+def T_F():
+    print('여기로 왔어어어엉어ㅓ요요')
     return redirect('english:home-page')
 
 def list_len(list, num):

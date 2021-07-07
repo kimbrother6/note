@@ -11,4 +11,5 @@ urlpatterns = [
     path('<int:id>/delete/', views.delete, name='delete'),
     path('list_player/<str:list_name>/', views.list_player, name='list-player'),
     path('view_artist/', views.view_artist, name='view-artist'),
+    path('song_push/', views.song_push, name='song-push')
 ]

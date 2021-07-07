@@ -6,6 +6,7 @@ from .models import Song
 from sqlalchemy import create_engine
 import youtube_dl
 import pandas as pd
+import random
 
 
 engine = create_engine("sqlite:////Users/cubest_june/hj-django/note/db.sqlite3")
@@ -53,7 +54,7 @@ def create(request): #form
 
 def detail(request, id): #음악을 플래이시켜주는 페이지를 호출해주는 함수
     song = Song.objects.get(id=id)
-    return render(request, 'music/music_player.html', {'model': song})
+    return render(request, 'music/detail.html', {'song': song})
 
 def update(request, id):
     song = Song.objects.get(id=id)
@@ -86,3 +87,8 @@ def delete(request ,id):
         return redirect('music:home-page')
     else:
         return render(request, 'home/post_confirm_delete.html', {'song': song})
+
+def song_push(request):
+    song = Song.objects.all()
+    song_push = song[random.randint(0, len(song) - 1)]
+    return render(request, 'music/detail.html', {'song': song_push})

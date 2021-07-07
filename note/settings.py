@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'home',
     'math_note',
+    'math_note.models.Post',
     'english_note',
     'music',
 ]

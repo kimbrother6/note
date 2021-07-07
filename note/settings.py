@@ -38,10 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'home',
+    'math_note.models.Post',
     'math_note',
     'english_note',
     'music',
-    'math_note.models.Post',
 ]
 
 MIDDLEWARE = [

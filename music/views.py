@@ -37,6 +37,7 @@ def create(request): #form
             ydl.download(['{}'.format(song_url)])
 
         new_snog = Song(
+            artist = request.POST['artist'],
             song_title = song_title,
             song_url = song_url,
             Class = Class,
@@ -60,7 +61,7 @@ def update(request, id):
         song_form = SongForm(request.POST, instance=song)
         song_form.save()
 
-        return redirect('music:view-artist')
+        return redirect('music:home-page')
     else:
         form = SongForm(instance=song)
         return render(request, 'music/forms.html', {'form': form})

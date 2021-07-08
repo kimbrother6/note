@@ -9,11 +9,16 @@ https://docs.djangoproject.com/en/2.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
-
+from pathlib import Path
 import os
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "your_project.settings")
 
+from django.core.wsgi import get_wsgi_application
+# application = get_wsgi_application()
+os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # Quick-start development settings - unsuitable for production
@@ -38,10 +43,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'home',
-    'math_note.models.Post',
     'math_note',
     'english_note',
     'music',
+    # 'math_note.apps.MathConfig',
+    # 'math_note.models.Post',
 ]
 
 MIDDLEWARE = [
